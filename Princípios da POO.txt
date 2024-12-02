@@ -1,0 +1,141 @@
+Princípios da POO
+1. Encapsulamento
+   - Definição: É o princípio que permite esconder os detalhes internos de uma classe e expor somente o que é necessário. Isso é feito usando modificadores de acesso como `private`, `protected` e `public`.
+     - `private`: Restringe o acesso ao membro dentro da própria classe.
+     - `protected`: Permite o acesso dentro da classe e por classes derivadas.
+     - `public`: Disponibiliza o acesso para qualquer classe.
+
+   *Exemplo em Python*:
+   ```python
+   class ContaBancaria:
+       def __init__(self, saldo):
+           self.__saldo = saldo  # Atributo privado
+
+       def depositar(self, valor):
+           self.__saldo += valor  # Método público
+
+       def get_saldo(self):
+           return self.__saldo
+
+   conta = ContaBancaria(100)
+   conta.depositar(50)
+   print(conta.get_saldo())  # Acessa saldo através de método público
+   ```
+2. Herança
+   - Definição: Permite que uma classe herde atributos e métodos de outra classe, promovendo a reutilização de código. Também permite sobrecarga de métodos, isto é, redefinir métodos da classe pai na classe filha.
+
+   *Exemplo em Python*:
+   ```python
+   class Animal:
+       def som(self):
+           print("Som genérico de animal")
+
+   class Cachorro(Animal):
+       def som(self):  # Sobrescrita de método
+           print("Latido")
+
+   dog = Cachorro()
+   dog.som()  # Saída: Latido
+   ```
+3. Polimorfismo
+   - Definição: Permite que diferentes classes usem o mesmo método, mas com comportamentos distintos. Isso pode ser alcançado por meio de métodos sobrecarregados ou sobrescritos e pelo uso de interfaces.
+   *Exemplo em Python*:
+   ```python
+   class Forma:
+       def area(self):
+           pass
+
+   class Retangulo(Forma):
+       def __init__(self, largura, altura):
+           self.largura = largura
+           self.altura = altura
+
+       def area(self):
+           return self.largura * self.altura
+
+   forma = Retangulo(5, 3)
+   print(forma.area())  # Saída: 15
+   ```
+4. Abstração
+   - Definição: Foca em definir comportamentos comuns e esconder detalhes de implementação. Em Python, isso pode ser feito usando classes abstratas e métodos abstratos.
+
+   *Exemplo em Python*:
+   ```python
+   from abc import ABC, abstractmethod
+
+   class Forma(ABC):
+       @abstractmethod
+       def area(self):
+           pass
+
+   class Circulo(Forma):
+       def __init__(self, raio):
+           self.raio = raio
+
+       def area(self):
+           return 3.14 * self.raio * self.raio
+
+   circulo = Circulo(4)
+   print(circulo.area())  # Saída: 50.24
+   ```
+
+---
+Implementação
+Conceitos de Classes, Objetos e Métodos
+   - Classe: Define o modelo de um objeto.
+   - Objeto: Instância de uma classe.
+   - Método: Função dentro da classe.
+
+   *Exemplo*:
+   ```python
+   class Pessoa:
+       def __init__(self, nome):
+           self.nome = nome
+
+       def saudacao(self):
+           print(f"Olá, meu nome é {self.nome}")
+
+   pessoa1 = Pessoa("João")
+   pessoa1.saudacao()
+   ```
+Interação entre Objetos
+   - Um objeto pode interagir com outro chamando seus métodos ou acessando seus atributos.
+
+   *Exemplo*:
+   ```python
+   class Produto:
+       def __init__(self, nome, preco):
+           self.nome = nome
+           self.preco = preco
+
+   class CarrinhoDeCompras:
+       def __init__(self):
+           self.produtos = []
+
+       def adicionar_produto(self, produto):
+           self.produtos.append(produto)
+
+       def calcular_total(self):
+           return sum(produto.preco for produto in self.produtos)
+
+   produto1 = Produto("Camiseta", 50)
+   produto2 = Produto("Calça", 100)
+   carrinho = CarrinhoDeCompras()
+   carrinho.adicionar_produto(produto1)
+   carrinho.adicionar_produto(produto2)
+   print(carrinho.calcular_total())  # Saída: 150
+   ```
+Uso do GitHub no Dia a Dia de um Dev
+   - Versionamento: Acompanhamento de mudanças no código.
+   - Colaboração: Trabalho em equipe usando branches e pull requests.
+   - Histórico: Acesso a versões anteriores do projeto.
+
+   Comandos Comuns do Git:
+   ```bash
+   git init  # Inicializa repositório
+   git add .  # Adiciona arquivos ao stage
+   git commit -m "Primeiro commit"  # Cria commit
+   git push origin main  # Envia alterações para o repositório remoto
+   ``` 
+
+Esses conceitos são essenciais para estruturar e organizar código de forma eficiente e colaborativa.
